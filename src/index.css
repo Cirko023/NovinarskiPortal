@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+    --boja-teksta-bela: white;
+    --boja-teksta-crna: black;
+}
