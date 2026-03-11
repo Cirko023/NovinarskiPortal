@@ -1,6 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-    --boja-teksta-bela: white;
-    --boja-teksta-crna: black;
+    --boja-teksta-svetla: white;
+    --boja-teksta-tamna: black;
+    --boja-pozadine-svetla: #D5D7E2;
+    --boja-pozadine-tamna: #1D202A;
+}
+
+/*192047*/
+
+body {
+    background-color: var(--boja-pozadine-svetla);
+    color: var(--boja-teksta-tamna);
 }
