@@ -1,10 +1,31 @@
 import './index.css'
 import KarticaVest from './KarticaVest.jsx';
 import Kartica2 from './Kartica2.jsx';
+import Kartica3 from './Kartica3.jsx';
 
 function Pocetna() {
     return(
         <>
+
+        <div class='flex flex-row justify-center items-center gap-10 mb-40 mt-40'> 
+        
+            <Kartica3
+                slika='./slay-the-spire-2.jpg'
+
+                ImeSlike='Slay the Spire'
+
+                tekst='Slay the Spire Recenzija'
+            />
+
+            <Kartica3
+                slika='./steam-deck.jpg'
+
+                ImeSlike='Steam Deck'
+
+                tekst='Steam Deck Recenzija'
+            />
+
+        </div>
 
         <div class='flex items-center mt-40 border-b border-gray-400 mb-7'>
         <p className='font-bold text-4xl mb-1'>HIT IGRE</p>

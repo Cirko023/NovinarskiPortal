@@ -1,6 +1,6 @@
 import './index.css'
 
-function KarticaVest({slika, ImeSlike, tekst}) {
+function Kartica2({slika, ImeSlike, tekst}) {
     return(
         <>
             <div className='flex flex-row'>
@@ -20,5 +20,5 @@ function KarticaVest({slika, ImeSlike, tekst}) {
 
 }
 
-export default KarticaVest;
+export default Kartica2;
 
