@@ -8,11 +8,13 @@ import TipsAndTricks from './TipsAndTricks.jsx'
 import Softver from './Softver.jsx'
 import Dogadjaji from './Dogadjaji.jsx'
 import Telefoni from './Telefoni.jsx'
+import Login from './Login.jsx'
+import Register from './Register.jsx'
+import DodajTekst from './DodajTekst.jsx'
 
 function App() {
 
   return (
-    <>
     <BrowserRouter>
       <Header />
       <div className='pt-20'>
@@ -24,11 +26,14 @@ function App() {
         <Route path='/telefoni' element={<Telefoni />}/>
         <Route path='/softver' element={<Softver />} />
         <Route path='/dogadjaji' element={<Dogadjaji />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/dodaj-tekst' element={<DodajTekst />} />
       </Routes>
       </div>
     </BrowserRouter>
-    </>
   )
+
 }
 
 export default App
