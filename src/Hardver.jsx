@@ -6,7 +6,7 @@ import Kartica3 from './Kartica3.jsx';
 function Hardver() {
     return(
         <>
-        <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40'>
+        <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
         <Kartica3
             slika='./geforce-rtx-5090.jpg'
             imeSlike='GeForce RTX 5090'

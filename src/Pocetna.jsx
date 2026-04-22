@@ -7,7 +7,7 @@ function Pocetna() {
     return(
         <>
 
-        <div class='flex flex-row justify-center items-center gap-10 mb-40 mt-40'> 
+        <div class='flex flex-row justify-center items-center bg-linear-to-r/hsl from-gray-900 to-gray-600 gap-10 mb-40 mt-40 w-full h-130'> 
         
             <Kartica3
                 slika='./slay-the-spire-2.jpg'
