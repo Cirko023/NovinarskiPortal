@@ -2,95 +2,122 @@ import './index.css'
 import KarticaVest from './KarticaVest.jsx';
 import Kartica2 from './Kartica2.jsx';
 import Kartica3 from './Kartica3.jsx';
+import { useEffect, useState } from 'react';
+import { db } from './firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import { Link, useNavigate } from 'react-router-dom';
+
+const KarticaLink = ({ id, children }) => {
+    return id ? <Link to={`/tekst/${id}`}>{children}</Link> : <>{children}</>;
+};
+
+const izvuciSliku = (html) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const img = doc.querySelector('img');
+    return img ? img.src : null;
+};
 
 function Pocetna() {
-    return(
+    const [tekstovi, setTekstovi] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchTekstovi = async () => {
+            const querySnapshot = await getDocs(collection(db, 'tekstovi'));
+            const lista = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setTekstovi(lista);
+        };
+        fetchTekstovi();
+    }, []);
+
+    const idPoNaslovu = (naslov) => {
+        const pronadjen = tekstovi.find(
+            t => t.naslov.toLowerCase() === naslov.toLowerCase()
+        );
+        return pronadjen ? pronadjen.id : null;
+    };
+
+    const handleKlik = (naslov) => {
+        const id = idPoNaslovu(naslov);
+        if (id) navigate(`/tekst/${id}`);
+    };
+
+    return (
         <>
-
-        <div class='flex flex-row justify-center items-center bg-linear-to-r/hsl from-gray-900 to-gray-600 gap-10 mb-40 mt-40 w-full h-130'> 
-        
-            <Kartica3
-                slika='./slay-the-spire-2.jpg'
-
-                ImeSlike='Slay the Spire'
-
-                tekst='Slay the Spire Recenzija'
-            />
-
-            <Kartica3
-                slika='./steam-deck.jpg'
-
-                ImeSlike='Steam Deck'
-
-                tekst='Steam Deck Recenzija'
-            />
-
+        <div className='flex flex-row justify-center items-center bg-linear-to-r/hsl from-gray-900 to-gray-600 gap-10 mb-40 mt-40 w-full h-130'>
+            <div className='cursor-pointer' onClick={() => handleKlik('Slay the Spire Recenzija')}>
+                <Kartica3 slika='./slay-the-spire-2.jpg' ImeSlike='Slay the Spire' tekst='Slay the Spire Recenzija' />
+            </div>
+            <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck Recenzija')}>
+                <Kartica3 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck Recenzija' />
+            </div>
         </div>
 
-        <div class='flex items-center mt-40 border-b border-gray-400 mb-7'>
-        <p className='font-bold text-4xl mb-1'>HIT IGRE</p>
+        <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
+            <p className='font-bold text-4xl mb-1'>HIT IGRE</p>
         </div>
 
-        <div class='flex flex-row justify-center items-center gap-10'> 
-
-           <KarticaVest
-                slika='./slay-the-spire-2.jpg'
-
-                ImeSlike='Slay the Spire 2'
-            
-                tekst='Slay the Spire 2 je najavljen! Očekuje se da će doneti nove karte, likove i izazove, pružajući igračima još dublje iskustvo u ovom popularnom roguelike deck-building žanru.'
-           />
-
-
-
-            <KarticaVest
-                slika='./clair-obscure.jpg'
-
-                ImeSlike='Clair Obscure'
-
-                tekst='Clair Obscure je novi igrački pristup u svetu roguelike igara, pružajući igracima jedinstveno iskustvo u preživljavanju i strategiji.'
-            />
-
-            
-            <KarticaVest
-
-                slika='./arc-raiders.jpg'
-
-                ImeSlike='Arc Raiders'
-
-                tekst='Arc Raiders je nova igra koja kombinuje elemente akcije i avanture, pružajući igračima dinamično iskustvo u borbi protiv vanzemaljskih pretnji.'
-
-            />
-            
+        <div className='flex flex-row justify-center items-center gap-10'>
+            <div className='cursor-pointer' onClick={() => handleKlik('Slay the Spire 2')}>
+                <KarticaVest slika='./slay-the-spire-2.jpg' ImeSlike='Slay the Spire 2' tekst='Slay the Spire 2 je najavljen! Očekuje se da će doneti nove karte, 
+                likove i izazove, pružajući igračima još dublje iskustvo u ovom popularnom roguelike deck-building žanru.' />
+            </div>
+            <div className='cursor-pointer' onClick={() => handleKlik('Clair Obscure')}>
+                <KarticaVest slika='./clair-obscure.jpg' ImeSlike='Clair Obscure' tekst='Clair Obscure je novi igrački pristup u svetu roguelike igara, 
+                pružajući igracima jedinstveno iskustvo u preživljavanju i strategiji.' />
+            </div>
+            <div className='cursor-pointer' onClick={() => handleKlik('Arc Raiders')}>
+                <KarticaVest slika='./arc-raiders.jpg' ImeSlike='Arc Raiders' tekst='Arc Raiders je nova igra koja kombinuje elemente akcije i avanture, 
+                pružajući igračima dinamično iskustvo u borbi protiv vanzemaljskih pretnji.' />
+            </div>
         </div>
 
-        <div class='flex items-center border-b border-gray-400 mb-7'>
-        <p className='font-bold text-4xl mb-1'>NEWS</p>
+        <div className='flex items-center border-b border-gray-400 mb-7'>
+            <p className='font-bold text-4xl mb-1'>NEWS</p>
         </div>
 
-        <div class='flex flex-col justify-center'>
+        <div className='flex flex-col justify-center'>
+            <div className='cursor-pointer' onClick={() => handleKlik('Nintendo Switch')}>
+                <Kartica2 slika='./nintendo-switch.jpg' ImeSlike='Nintendo Switch' tekst='Nintendo Switch je najavio novu liniju konzola sa poboljšanim performansama 
+                i većim ekranom, pružajući igračima još bolje iskustvo igranja.' />
+            </div>
+            <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck')}>
+                <Kartica2 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck je nova prenosiva gaming konzola koja se takmici sa Nintendo Switch-om, 
+                nudeći igračima mogućnost da igraju svoje omiljene PC igre na putu.' />
+            </div>
+        </div>
 
-            <Kartica2
-                slika = './nintendo-switch.jpg'
+        <div className='flex items-center border-b border-gray-400 mb-7 mt-20'>
+            <p className='font-bold text-4xl mb-1'>NAJNOVIJI TEKSTOVI</p>
+        </div>
 
-                ImeSlike = 'Nintendo Switch'
-
-                tekst = 'Nintendo Switch je najavio novu liniju konzola sa poboljšanim performansama i većim ekranom, pružajući igračima još bolje iskustvo igranja.'
-
-            />
-
-            <Kartica2
-                slika = './steam-deck.jpg'
-
-                ImeSlike = 'Steam Deck'
-
-                tekst = 'Steam Deck je nova prenosiva gaming konzola koja se takmici sa Nintendo Switch-om, nudeći igračima mogućnost da igraju svoje omiljene PC igre na putu.'
-
-            />
-
+        <div className='flex flex-col mb-20'>
+            {tekstovi.map((tekst) => {
+                const slika = izvuciSliku(tekst.sadrzaj);
+                return (
+                    <Link key={tekst.id} to={`/tekst/${tekst.id}`}>
+                        <div className='flex flex-row bg-gray-700 mb-10 rounded-xl hover:scale-102 transition-transform duration-300 overflow-hidden cursor-pointer'>
+                            {slika && (
+                                <img
+                                    src={slika}
+                                    alt={tekst.naslov}
+                                    className='w-48 h-32 object-cover'
+                                />
+                            )}
+                            <div className='flex flex-col justify-center p-5'>
+                                <h2 className='text-2xl font-bold text-white'>{tekst.naslov}</h2>
+                            </div>
+                        </div>
+                    </Link>
+                );
+            })}
         </div>
         </>
-    ) 
+    );
 }
 
-export default Pocetna
+export default Pocetna;

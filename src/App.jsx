@@ -11,6 +11,7 @@ import Telefoni from './Telefoni.jsx'
 import Login from './Login.jsx'
 import Register from './Register.jsx'
 import DodajTekst from './DodajTekst.jsx'
+import TekstDetalji from './TekstDetalji.jsx'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dodaj-tekst' element={<DodajTekst />} />
+        <Route path="/tekst/:id" element={<TekstDetalji />} />
       </Routes>
       </div>
     </BrowserRouter>
