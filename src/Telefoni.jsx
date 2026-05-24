@@ -25,8 +25,8 @@ function Telefoni() {
     return (
         <>
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Samsung Galaxy S25 Ultra Recenzija')}>
-                <Kartica3 slika='./samsung-s25.jpg' imeSlike='Samsung Galaxy S25 Ultra' tekst='Samsung Galaxy S25 Ultra Recenzija' />
+            <div className='cursor-pointer' onClick={() => handleKlik('Samsung Galaxy S25 Ultra')}>
+                <Kartica3 slika='./samsung-s25.jpg' imeSlike='Samsung Galaxy S25 Ultra' tekst='Samsung Galaxy S25 Ultra' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('iPhone 17 Pro Recenzija')}>
                 <Kartica3 slika='./iphone17.jpg' imeSlike='iPhone 17 Pro' tekst='iPhone 17 Pro Recenzija' />
