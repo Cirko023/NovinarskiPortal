@@ -35,6 +35,9 @@ function Pocetna() {
             <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck Recenzija')}>
                 <Kartica3 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck Recenzija' />
             </div>
+            <div className='cursor-pointer' onClick={() => handleKlik('Google I/O 2026')}>
+                <Kartica3 slika='./google-io.jpg' ImeSlike='Google I/O 2026' tekst='Google I/O 2026' />
+            </div>
         </div>
 
         <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
