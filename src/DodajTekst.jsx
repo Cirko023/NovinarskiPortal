@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
+import toast from 'react-hot-toast';
 
 function DodajTekst() {
     const navigate = useNavigate();
@@ -45,7 +46,7 @@ function DodajTekst() {
                 quill.insertEmbed(range.index, 'image', url);
             // eslint-disable-next-line no-unused-vars
             } catch (error) {
-                alert('Greška pri uploadu slike');
+                toast.error('Greška pri uploadu slike');
             }
         };
     };
@@ -65,7 +66,7 @@ function DodajTekst() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!kategorija) {
-            alert('Molimo izaberite kategoriju!');
+            toast.error('Molimo izaberite kategoriju!');
             return;
         }
         try {
@@ -78,12 +79,12 @@ function DodajTekst() {
                 vremeKreiranja: serverTimestamp(),
                 vremeIzmene: serverTimestamp()
             });
-            alert('Tekst je uspešno dodat!');
+            toast.success('Tekst je uspešno dodat!');
             setNaslov('');
             setSadrzaj('');
             setKategorija('');
         } catch (error) {
-            alert('Greška pri dodavanju teksta: ' + error.message);
+            toast.error('Greška pri dodavanju teksta: ' + error.message);
         }
     };
 

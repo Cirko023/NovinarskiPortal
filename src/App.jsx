@@ -12,11 +12,13 @@ import Login from './Login.jsx'
 import Register from './Register.jsx'
 import DodajTekst from './DodajTekst.jsx'
 import TekstDetalji from './TekstDetalji.jsx'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
     <BrowserRouter>
+      <Toaster position="top-right" />
       <Header />
       <div className='pt-20'>
       <Routes>
