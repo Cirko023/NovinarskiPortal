@@ -2,34 +2,13 @@ import './index.css'
 import KarticaVest from './KarticaVest.jsx';
 import Kartica2 from './Kartica2.jsx';
 import Kartica3 from './Kartica3.jsx';
-import { useEffect, useState } from 'react';
-import { db } from './firebase';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
-
-const izvuciSliku = (html) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const img = doc.querySelector('img');
-    return img ? img.src : null;
-};
+import useTekstovi from './hooks/useTekstovi';
+import izvuciSliku from './utils/izvuciSliku';
 
 function Hardver() {
-    const [tekstovi, setTekstovi] = useState([]);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchTekstovi = async () => {
-            const q = query(collection(db, 'tekstovi'), where('kategorija', '==', 'hardver'));
-            const querySnapshot = await getDocs(q);
-            const lista = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setTekstovi(lista);
-        };
-        fetchTekstovi();
-    }, []);
+    const tekstovi = useTekstovi('hardver');
 
     const idPoNaslovu = (naslov) => {
         const pronadjen = tekstovi.find(

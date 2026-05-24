@@ -2,37 +2,17 @@ import './index.css'
 import KarticaVest from './KarticaVest.jsx';
 import Kartica2 from './Kartica2.jsx';
 import Kartica3 from './Kartica3.jsx';
-import { useEffect, useState } from 'react';
-import { db } from './firebase';
-import { collection, getDocs } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
+import useTekstovi from './hooks/useTekstovi';
+import izvuciSliku from './utils/izvuciSliku';
 
 const KarticaLink = ({ id, children }) => {
     return id ? <Link to={`/tekst/${id}`}>{children}</Link> : <>{children}</>;
 };
 
-const izvuciSliku = (html) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const img = doc.querySelector('img');
-    return img ? img.src : null;
-};
-
 function Pocetna() {
-    const [tekstovi, setTekstovi] = useState([]);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchTekstovi = async () => {
-            const querySnapshot = await getDocs(collection(db, 'tekstovi'));
-            const lista = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setTekstovi(lista);
-        };
-        fetchTekstovi();
-    }, []);
+    const tekstovi = useTekstovi();
 
     const idPoNaslovu = (naslov) => {
         const pronadjen = tekstovi.find(
