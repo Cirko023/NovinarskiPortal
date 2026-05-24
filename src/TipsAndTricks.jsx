@@ -8,7 +8,7 @@ import izvuciSliku from './utils/izvuciSliku';
 
 function TipsAndTricks() {
     const navigate = useNavigate();
-    const tekstovi = useTekstovi('tips-and-tricks');
+    const tekstovi = useTekstovi('tipsandtricks');
 
     const idPoNaslovu = (naslov) => {
         const pronadjen = tekstovi.find(
