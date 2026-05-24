@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from './firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import DOMPurify from 'dompurify';
 
 function TekstDetalji() {
     const { id } = useParams();
@@ -55,7 +56,7 @@ function TekstDetalji() {
                     prose-strong:font-bold
                     prose-ul:list-disc prose-ul:pl-6
                     prose-ol:list-decimal prose-ol:pl-6'
-                dangerouslySetInnerHTML={{ __html: tekst.sadrzaj }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(tekst.sadrzaj) }}
             />
         </div>
     );
