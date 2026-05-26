@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -13,10 +12,10 @@ function Login() {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            toast.success('Uspešno ste se prijavili!');
+            alert('Uspešno ste se prijavili!');
             navigate('/');
         } catch (error) {
-            toast.error('Greška pri prijavi: ' + error.message);
+            alert('Greška pri prijavi: ' + error.message);
         }
     };
 
