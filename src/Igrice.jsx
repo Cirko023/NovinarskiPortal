@@ -2,55 +2,42 @@ import './index.css'
 import KarticaVest from './KarticaVest.jsx';
 import Kartica2 from './Kartica2.jsx';
 import Kartica3 from './Kartica3.jsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
 
 function Igrice() {
-    const navigate = useNavigate();
     const tekstovi = useTekstovi('igrice');
-
-    const idPoNaslovu = (naslov) => {
-        const pronadjen = tekstovi.find(
-            t => t.naslov.toLowerCase() === naslov.toLowerCase()
-        );
-        return pronadjen ? pronadjen.id : null;
-    };
-
-    const handleKlik = (naslov) => {
-        const id = idPoNaslovu(naslov);
-        if (id) navigate(`/tekst/${id}`);
-    };
 
     return (
         <>
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Forza Horizon 6 Recenzija')}>
+            <Link to="/tekst/jsAspFAC1iMdE2197d7z">
                 <Kartica3 slika='./forza-horizon6.jpg' imeSlike='Forza Horizon 6' tekst='Forza Horizon 6 Recenzija' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Subnautica 2 Recenzija')}>
+            </Link>
+            <Link to="/tekst/miWWgh29gubNFYGzu44n">
                 <Kartica3 slika='./subnautica2.jpg' imeSlike='Subnautica 2' tekst='Subnautica 2 Recenzija' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Pragmata Recenzija')}>
+            </Link>
+            <Link to="/tekst/aXZuDeWqHzxz5KRHtWPm">
                 <Kartica3 slika='./pragmata.jpg' imeSlike='Pragmata' tekst='Pragmata Recenzija' />
-            </div>
+            </Link>
         </div>
 
         <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
             <p className='font-bold text-4xl mb-1'>NAJNOVIJE VESTI</p>
         </div>
 
-        <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Slay the Spire 2 Beta')}>
+        <Link className='flex flex-col justify-center'>
+            <Link to="/tekst/zaTESpAnTAfnIkAtqhdI">
                 <Kartica2 slika='./slay-the-spire-2.jpg' imeSlike='Slay the Spire 2' tekst='Slay the Spire 2 beta donosi novi sadržaj — nove karte, relici i izmene balansa stigle su u najnovijem beta update-u, a zajednica aktivno utiče na dalji razvoj igre.' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Clair Obscur DLC')}>
+            </Link>
+            <Link to="/tekst/lF9nEKUdbPdKbV5VoM1o">
                 <Kartica2 slika='./clair-obscure.jpg' imeSlike='Clair Obscur' tekst='Clair Obscur: Expedition 33 najavljuje prvi DLC koji proširuje priču o Expeditoru sa novim lokacijama i boss borbama inspirisanim francuskim simbolizmom.' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Arc Raiders new Arcs')}>
+            </Link>
+            <Link to="/tekst/UZGLVeFPPzROrDBRZn4E">
                 <Kartica2 slika='./arc-raiders.jpg' imeSlike='Arc Raiders' tekst='Arc Raiders uvodi nove arkove u igru — svaki sa jedinstvenim mehanizmima, čime se dramatično povećava potreba za kooperativan rad izmedju igraca ovog extraction shootera.' />
-            </div>
-        </div>
+            </Link>
+        </Link>
 
         <div className='flex items-center border-b border-gray-400 mb-7 mt-20'>
             <p className='font-bold text-4xl mb-1'>TEKSTOVI</p>
