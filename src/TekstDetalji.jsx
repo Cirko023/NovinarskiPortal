@@ -49,6 +49,7 @@ function TekstDetalji() {
             {/* Sadržaj same vesti - detalji neke vesti sa tailwind css prose plugin*/}
             <div
                 className='prose prose-lg max-w-none
+                    overflow-x-hidden break-normal
                     prose-headings:font-bold prose-headings:mt-8 prose-headings:mb-4
                     prose-p:leading-relaxed prose-p:mb-5
                     prose-img:rounded-xl prose-img:w-full prose-img:my-8
@@ -56,7 +57,7 @@ function TekstDetalji() {
                     prose-strong:font-bold
                     prose-ul:list-disc prose-ul:pl-6
                     prose-ol:list-decimal prose-ol:pl-6'
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(tekst.sadrzaj) }}
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(tekst.sadrzaj.replace(/&nbsp;/g, ' ')) }}
             />
         </div>
     );
