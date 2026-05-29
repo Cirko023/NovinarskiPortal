@@ -26,6 +26,41 @@ function DodajTekst() {
     if (loading) return null;
     if (!user) return null;
 
+    const imageHandler = () => {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+        input.onchange = async () => {
+            const file = input.files[0];
+            if (!file) return;
+            try {
+                const storageRef = ref(storage, `slike/${Date.now()}-${file.name}`);
+                await uploadBytes(storageRef, file);
+                const url = await getDownloadURL(storageRef);
+                const quill = quillRef.current.getEditor();
+                const range = quill.getSelection();
+                quill.insertEmbed(range.index, 'image', url);
+            // eslint-disable-next-line no-unused-vars
+            } catch (error) {
+                toast.error('Greška pri uploadu slike');
+            }
+        };
+    };
+
+    const modules = {
+        toolbar: {
+            container: [
+                [{ header: [1, 2, false] }],
+                ['bold', 'italic', 'underline'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ align: [] }],
+                ['link', 'image']
+            ],
+            handlers: { image: imageHandler }
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!kategorija) {
@@ -80,6 +115,16 @@ function DodajTekst() {
                     <option value='softver'>Softver</option>
                     <option value='dogadjaji'>Eventi</option>
                 </select>
+                <div className='rounded-xl overflow-hidden border border-gray-600 text-center'>
+                    <ReactQuill
+                        ref={quillRef}
+                        theme="snow"
+                        value={sadrzaj}
+                        onChange={setSadrzaj}
+                        modules={modules}
+                        className='bg-white'
+                    />
+                </div>
 
                 <textarea
                     placeholder='Sadržaj teksta'
