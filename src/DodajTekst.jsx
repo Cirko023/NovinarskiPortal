@@ -57,6 +57,7 @@ function DodajTekst() {
                 [{ header: [1, 2, false] }],
                 ['bold', 'italic', 'underline'],
                 [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ align: [] }],
                 ['link', 'image']
             ],
             handlers: { image: imageHandler }
@@ -115,7 +116,7 @@ function DodajTekst() {
                     <option value='softver'>Softver</option>
                     <option value='dogadjaji'>Događaji</option>
                 </select>
-                <div className='rounded-xl overflow-hidden border border-gray-600'>
+                <div className='rounded-xl overflow-hidden border border-gray-600 text-center'>
                     <ReactQuill
                         ref={quillRef}
                         theme="snow"

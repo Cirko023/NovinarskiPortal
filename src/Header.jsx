@@ -28,7 +28,7 @@ function Header() {
         {/* Ako budemo imali logo mogli bi neki on hover efekat da se zoom in ili nesto tako */}
         <div className='px-4 flex flex-col pb-2'>
         <h1 className='text-(--boja-teksta-svetla) text-center text-4xl py-3'>Novinarski Portal</h1>
-        <p className='text-(--boja-teksta-svetla) text-xl py-2'>Sve o IT industriji...</p>
+        <p className='text-(--boja-teksta-svetla) text-center text-xl py-2'>Sve o IT industriji...</p>
             <div className='flex gap-4 items-right justify-end'>
                 {user ? (
                     <>
