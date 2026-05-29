@@ -120,7 +120,7 @@ function DodajTekst() {
                     <option value='tipsandtricks'>Tips & Tricks</option>
                     <option value='telefoni'>Mobilni Uređaji</option>
                     <option value='softver'>Softver</option>
-                    <option value='dogadjaji'>Eventi</option>
+                    <option value='dogadjaji'>Događaji</option>
                 </select>
                 <div className='rounded-xl overflow-hidden border border-gray-600 text-center'>
                     <ReactQuill
@@ -135,9 +135,9 @@ function DodajTekst() {
 
                 <button
                     type='submit'
-                    className='bg-green-500 text-white p-2 rounded hover:bg-green-600'
+                    className='bg-gray-700 text-white p-3 rounded-xl border border-gray-600 hover:bg-gray-600 transition-colors duration-200 font-bold mt-5'
                 >
-                    Dodaj tekst
+                    Objavi tekst
                 </button>
             </form>
         </div>
