@@ -14,17 +14,6 @@ body {
     color: var(--boja-teksta-tamna);
 }
 
-.prose .ql-align-center {
-    text-align: center !important;
-}
-
-.prose .ql-align-right {
-    text-align: right !important;
-}
-
-.prose .ql-align-left {
-    text-align: left !important;
-}
 img {
     display: block;
 }
