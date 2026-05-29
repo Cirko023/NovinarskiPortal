@@ -1,8 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { db, auth } from './firebase.js';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from './firebase.js';
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
+import toast from "react-hot-toast";
 
 function DodajTekst() {
     const navigate = useNavigate();
@@ -11,6 +16,7 @@ function DodajTekst() {
     const [naslov, setNaslov] = useState('');
     const [sadrzaj, setSadrzaj] = useState('');
     const [kategorija, setKategorija] = useState('');
+    const quillRef = useRef(null);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -26,6 +32,7 @@ function DodajTekst() {
     if (loading) return null;
     if (!user) return null;
 
+    
     const imageHandler = () => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -64,7 +71,7 @@ function DodajTekst() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!kategorija) {
-            alert('Molimo izaberite kategoriju!');
+            toast.error('Molimo izaberite kategoriju!');
             return;
         }
         try {
@@ -77,12 +84,12 @@ function DodajTekst() {
                 vremeKreiranja: serverTimestamp(),
                 vremeIzmene: serverTimestamp()
             });
-            alert('Tekst je uspešno dodat!');
+            toast.success('Tekst je uspešno dodat!');
             setNaslov('');
             setSadrzaj('');
             setKategorija('');
         } catch (error) {
-            alert('Greška pri dodavanju teksta: ' + error.message);
+            toast.error('Greška pri dodavanju teksta: ' + error.message);
         }
     };
 
@@ -125,14 +132,6 @@ function DodajTekst() {
                         className='bg-white'
                     />
                 </div>
-
-                <textarea
-                    placeholder='Sadržaj teksta'
-                    value={sadrzaj}
-                    onChange={(e) => setSadrzaj(e.target.value)}
-                    className='p-2 border border-gray-300 rounded h-64 resize-vertical'
-                    required
-                />
 
                 <button
                     type='submit'
