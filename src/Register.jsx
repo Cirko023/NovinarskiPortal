@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from './firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -14,7 +13,7 @@ function Register() {
     const handleRegister = async (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            toast.error('Lozinke se ne poklapaju!');
+            alert('Lozinke se ne poklapaju!');
             return;
         }
         try {
@@ -26,10 +25,10 @@ function Register() {
                 createdAt: new Date()
             });
 
-            toast.success('Uspešno ste se registrovali!');
+            alert('Uspešno ste se registrovali!');
             navigate('/');
         } catch (error) {
-            toast.error('Greška pri registraciji: ' + error.message);
+            alert('Greška pri registraciji: ' + error.message);
         }
     };
 
