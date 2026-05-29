@@ -60,7 +60,7 @@ function Pocetna() {
         </div>
 
         <div className='flex items-center border-b border-gray-400 mb-7'>
-            <p className='font-bold text-4xl mb-1'>NEWS</p>
+            <p className='font-bold text-4xl mb-1 text-black'>NEWS</p>
         </div>
 
         <div className='flex flex-col justify-center'>
@@ -83,7 +83,7 @@ function Pocetna() {
                 const slika = izvuciSliku(tekst.sadrzaj);
                 return (
                     <Link key={tekst.id} to={`/tekst/${tekst.id}`}>
-                        <div className='flex flex-row bg-gray-700 mb-10 rounded-xl hover:scale-102 transition-transform duration-300 overflow-hidden cursor-pointer'>
+                        <div className='flex flex-row bg-slate-900/95 mb-10 rounded-3xl hover:scale-[1.02] transition-transform duration-300 overflow-hidden cursor-pointer border border-slate-700'>
                             {slika && (
                                 <img
                                     src={slika}
@@ -91,7 +91,7 @@ function Pocetna() {
                                     className='w-48 h-32 object-cover'
                                 />
                             )}
-                            <div className='flex flex-col justify-center p-5'>
+                            <div className='flex flex-col justify-center p-6'>
                                 <h2 className='text-2xl font-bold text-white'>{tekst.naslov}</h2>
                             </div>
                         </div>
