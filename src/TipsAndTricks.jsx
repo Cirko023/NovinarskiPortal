@@ -31,8 +31,8 @@ function TipsAndTricks() {
             <div className='cursor-pointer' onClick={() => handleKlik('Keyboard shortcuts')}>
                 <Kartica3 slika='./keyboard-shortcuts.jpg' imeSlike='Keyboard shortcuts' tekst='Keyboard shortcuts' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('PC Maintenance Guide')}>
-                <Kartica3 slika='./pc-maintenance-guide.jpg' imeSlike='PC Maintenance Guide' tekst='PC Maintenance Guide' />
+            <div className='cursor-pointer' onClick={() => handleKlik('Tutorijal o održavanju kompjutera')}>
+                <Kartica3 slika='./pc-maintenance-guide.jpg' imeSlike='PC Maintenance Guide' tekst='Tutorijal o održavanju' />
             </div>
         </div>
 
