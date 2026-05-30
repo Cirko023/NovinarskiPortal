@@ -53,7 +53,7 @@ function Header() {
 
                 <nav className='flex flex-wrap gap-3 text-base text-slate-200'>
                     <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/'>Početna</NavLink>
-                    <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/hardver'>Hardver PC</NavLink>
+                    <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/hardver'>Hardver</NavLink>
                     <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/igrice'>Video Igre</NavLink>
                     <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/tipsandtricks'>Tips & Tricks</NavLink>
                     <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/telefoni'>Mobilni Uređaji</NavLink>
