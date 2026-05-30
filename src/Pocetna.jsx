@@ -29,13 +29,13 @@ function Pocetna() {
     return (
         <>
         <div className='flex flex-row justify-center items-center bg-linear-to-r/hsl from-gray-900 to-gray-600 gap-10 mb-40 mt-40 w-full h-130'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Slay the Spire Recenzija')}>
-                <Kartica3 slika='./slay-the-spire-2.jpg' ImeSlike='Slay the Spire' tekst='Slay the Spire Recenzija' />
+            <div className='cursor-pointer' onClick={() => handleKlik('Subnautica 2 Rani Pristup Recenzija')}>
+                <Kartica3 slika='./subnautica2.jpg' ImeSlike='Subnautica 2' tekst='Subnautica 2 Recenzija' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck Recenzija')}>
                 <Kartica3 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck Recenzija' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Google I/O 2026')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Stvari koje smo Objavili na I/O 2026')}>
                 <Kartica3 slika='./google-io.jpg' ImeSlike='Google I/O 2026' tekst='Google I/O 2026' />
             </div>
         </div>
@@ -45,15 +45,15 @@ function Pocetna() {
         </div>
 
         <div className='flex flex-row justify-center items-center gap-10'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Slay the Spire 2')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Slay The Spire 2 Beta Azuriranja')}>
                 <KarticaVest slika='./slay-the-spire-2.jpg' ImeSlike='Slay the Spire 2' tekst='Slay the Spire 2 je najavljen! Očekuje se da će doneti nove karte, 
                 likove i izazove, pružajući igračima još dublje iskustvo u ovom popularnom roguelike deck-building žanru.' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Clair Obscure')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Clair Obscur Expedition 33 DLC')}>
                 <KarticaVest slika='./clair-obscure.jpg' ImeSlike='Clair Obscure' tekst='Clair Obscure je novi igrački pristup u svetu roguelike igara, 
                 pružajući igracima jedinstveno iskustvo u preživljavanju i strategiji.' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Arc Raiders')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Firefly i Comet: Kako se Boriti protiv novih Arkova')}>
                 <KarticaVest slika='./arc-raiders.jpg' ImeSlike='Arc Raiders' tekst='Arc Raiders je nova igra koja kombinuje elemente akcije i avanture, 
                 pružajući igračima dinamično iskustvo u borbi protiv vanzemaljskih pretnji.' />
             </div>
@@ -64,11 +64,11 @@ function Pocetna() {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Nintendo Switch')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Nintendo Switch 2 je izašao: Sve što treba da znaš pre kupovine')}>
                 <Kartica2 slika='./nintendo-switch.jpg' ImeSlike='Nintendo Switch' tekst='Nintendo Switch je najavio novu liniju konzola sa poboljšanim performansama 
                 i većim ekranom, pružajući igračima još bolje iskustvo igranja.' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck Recenzija')}>
                 <Kartica2 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck je nova prenosiva gaming konzola koja se takmici sa Nintendo Switch-om, 
                 nudeći igračima mogućnost da igraju svoje omiljene PC igre na putu.' />
             </div>

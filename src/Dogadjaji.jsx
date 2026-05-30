@@ -44,7 +44,7 @@ function Dogadjaji() {
             <div className='cursor-pointer' onClick={() => handleKlik('CES 2026')}>
                 <Kartica2 slika='./ces-2026.jpg' imeSlike='CES 2026' tekst='Na ovogodišnjem CES sajmu u Las Vegasu predstavljeni su najnoviji AI uređaji, foldable laptopovi i robotski asistenti koji obećavaju da će promeniti svakodnevni život' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Google I/O 2026 ')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Stvari koje smo Objavili na I/O 2026')}>
                 <Kartica2 slika='./google-io.jpg' imeSlike='Google I/O 2026' tekst='Google je na svojoj godišnjoj konferenciji predstavio Android 16, nove Gemini AI modele i revolucionarni Project Astra koji integriše AI u sve Google proizvode.' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('Microsoft Build 2026')}>
