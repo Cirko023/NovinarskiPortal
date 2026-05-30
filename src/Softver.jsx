@@ -28,11 +28,11 @@ function Softver() {
             <Link to="/tekst/yFCOYvd1TnoiUUYteSpX">
                 <Kartica3 slika='./windows12.jpg' imeSlike='Windows 12' tekst='Windows 12 Recenzija' />
             </Link>
-            <Link to="/tekst/c8GV0ILQ3NIuUsmuPLK9">
-                <Kartica3 slika='./adobe.jpg' imeSlike='Adobe vs Free' tekst='Adobe vs Free Alternatives' />
-            </Link>
-            <div className='cursor-pointer' onClick={() => handleKlik('The Best Video Editing Software for 2026')}>
-                <Kartica3 slika='./editing-software.jpg' imeSlike='Video Editing Software' tekst='Best Video Editing Software' />
+            <div className='cursor-pointer' onClick={() => handleKlik('Najbolje Adobe Alternative u 2026')}>
+                <Kartica3 slika='./adobe.jpg' imeSlike='Adobe vs Free' tekst='Adobe vs Free Alternative' />
+            </div>
+            <div className='cursor-pointer' onClick={() => handleKlik('Najbolji Video Editing Software za 2026')}>
+                <Kartica3 slika='./editing-software.jpg' imeSlike='Video Editing Software' tekst='Najbolji Editing Software' />
             </div>
         </div>
 
@@ -41,10 +41,10 @@ function Softver() {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Office 2026: What We Know So Far and What to Expect')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Office 2026: Sta znamo dosad i sta ocekivati')}>
                 <Kartica2 slika='./m-office2026.jpg' imeSlike='Microsoft Office 2026' tekst='Microsoft izbacuje novi Office paket sa dubokom AI integracijom, Copilot asistentom u svakoj aplikaciji i novim real-time collaboration funkcijama' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('The Best Antivirus Software for 2026')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Najbolji antivirus softver 2026')}>
                 <Kartica2 slika='./antivirus.jpg' imeSlike='Antivirus Software' tekst='Sa porastom AI-generisanih malware napada, izbor pravog antivirusa nikad nije bio važniji. Bitdefender, Kaspersky i Windows Defender predvode listu u 2026, ali koji je pravi izbor za tebe? Testirali smo performanse, uticaj na sistem i cenu kako bismo pronašli pobednika.' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('AI Alati za Pisanje Koda: Da li će zameniti programere?')}>

@@ -115,7 +115,7 @@ function DodajTekst() {
                     className='p-2 border border-gray-300 rounded'
                 >
                     <option value=''>Izaberite kategoriju</option>
-                    <option value='hardver'>Hardver PC</option>
+                    <option value='hardver'>Hardver</option>
                     <option value='igrice'>Video Igre</option>
                     <option value='tipsandtricks'>Tips & Tricks</option>
                     <option value='telefoni'>Mobilni Uređaji</option>
