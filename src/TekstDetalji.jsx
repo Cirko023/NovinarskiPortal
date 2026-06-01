@@ -1,22 +1,24 @@
 import { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { db, auth } from './firebase';
-import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { useParams, useNavigate } from 'react-router-dom';
+import { db, auth, storage } from './firebase';
+import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import DOMPurify from 'dompurify';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from './firebase';
+import toast from "react-hot-toast";
 
 function TekstDetalji() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [tekst, setTekst] = useState(null);
     const [user, setUser] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [noviNaslov, setNoviNaslov] = useState('');
     const [noviSadrzaj, setNoviSadrzaj] = useState('');
     const quillRef = useRef(null);
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     useEffect(() => {
         const fetchTekst = async () => {
@@ -32,7 +34,7 @@ function TekstDetalji() {
         });
         return unsubscribe;
     }, [id]);
-
+    
     const imageHandler = () => {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -50,9 +52,19 @@ function TekstDetalji() {
                 quill.insertEmbed(range.index, 'image', url);
             // eslint-disable-next-line no-unused-vars
             } catch (error) {
-                alert('Greška pri uploadu slike');
+                toast.error('Greška pri uploadu slike');
             }
         };
+    };
+
+    const handleDelete = async () => {
+        try {
+            await deleteDoc(doc(db, 'tekstovi', id));
+            toast.success('Tekst uspešno obrisan');
+            navigate('/');
+        } catch (error) {
+            toast.error('Greška pri brisanju: ' + error.message);
+        }
     };
 
     const modules = {
@@ -83,7 +95,7 @@ function TekstDetalji() {
             setTekst(prev => ({ ...prev, naslov: noviNaslov, sadrzaj: noviSadrzaj }));
             setEditMode(false);
         } catch (error) {
-            alert('Greška pri čuvanju: ' + error.message);
+            toast.error('Greška pri čuvanju: ' + error.message);
         }
     };
 
@@ -92,6 +104,8 @@ function TekstDetalji() {
             <p className='text-gray-400 text-xl animate-pulse'>Učitava...</p>
         </div>
     );
+
+    const jeAutor = user && user.uid === tekst.autorId;
 
     return (
         <div className='max-w-4xl mx-auto px-6 mt-40 mb-20'>
@@ -153,6 +167,34 @@ function TekstDetalji() {
                         {tekst.vremeKreiranja && (
                             <span>📅 {tekst.vremeKreiranja.toDate().toLocaleDateString('sr-RS')}</span>
                         )}
+                        {jeAutor && (
+                            <div className='ml-auto flex items-center gap-2'>
+                                {confirmDelete ? (
+                                    <>
+                                        <span className='text-1xl text-black font-bold'>Da li ste sigurni?</span>
+                                        <button
+                                            onClick={handleDelete}
+                                            className='bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700 text-sm font-semibold'
+                                        >
+                                            Da, obriši
+                                        </button>
+                                        <button
+                                            onClick={() => setConfirmDelete(false)}
+                                            className='bg-gray-200 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-300 text-sm font-semibold'
+                                        >
+                                            Otkaži
+                                        </button>
+                                        </>
+                                    ) : (
+                                        <button
+                                            onClick={() => setConfirmDelete(true)}
+                                            className='ml-auto bg-red-600 text-white px-4 py-1 rounded-lg hover:bg-red-700 transition-colors duration-200 text-sm font-semibold'
+                                        >
+                                            🗑️ Obriši tekst
+                                        </button>
+                                )}
+                            </div>
+                         )}
                     </div>
                     <div
                         className='prose prose-lg max-w-none
