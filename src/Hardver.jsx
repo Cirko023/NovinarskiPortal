@@ -41,13 +41,13 @@ function Hardver() {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Intel CPU')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('Deficit silicijumskih čipova')}>
                 <Kartica2 slika='./intel-cpu.jpg' imeSlike='Intel CPU' tekst='Globalna nestašica procesora je navodno drastičnija nego nestašica RAM memorije, dok se industrija oslanja na izlazak novu Intel 18A tehnologiju.' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('PlayStation 5')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('PlayStation 5 Povećanje cene')}>
                 <Kartica2 slika='./sony-ps5.jpg' imeSlike='PlayStation 5' tekst='Sony povećao cenu PlayStation 5 konzola na globalnom nivou.' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('AMD Ryzen 9950X3D2')}>
+            <div className='cursor-pointer' onClick={() => handleKlik('AMD Ryzen 9 9950X3D2 Dual Edition Procesor')}>
                 <Kartica2 slika='./amd-ryzen.jpg' imeSlike='AMD Ryzen 9950X3D2' tekst='AMD izbacuje Ryzen 9 9950X3D2 Dual Edition processor koji kombinuje visoke performanse "Zen 5" tehnologije jezgra sa dual 2nd Gen AMD 3D V-Cache tehnologijom kroz svih 16 jezgara' />
             </div>
         </div>

@@ -31,8 +31,8 @@ function Telefoni() {
             <div className='cursor-pointer' onClick={() => handleKlik('iPhone 17 Pro Recenzija')}>
                 <Kartica3 slika='./iphone17.jpg' imeSlike='iPhone 17 Pro' tekst='iPhone 17 Pro Recenzija' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Najbolji Budget Telefon 2026')}>
-                <Kartica3 slika='./budget-telefoni.jpg' imeSlike='Budget Telefon' tekst='Najbolji Budget Telefon 2026' />
+            <div className='cursor-pointer' onClick={() => handleKlik('Najbolji Budžet Telefon 2026')}>
+                <Kartica3 slika='./budget-telefoni.jpg' imeSlike='Budget Telefon' tekst='Najbolji Budžet Telefon 2026' />
             </div>
         </div>
 
