@@ -28,8 +28,8 @@ function TipsAndTricks() {
             <div className='cursor-pointer' onClick={() => handleKlik('Linux/Windows dual boot')}>
                 <Kartica3 slika='./linux-windows.jpg' imeSlike='Linux i Windows' tekst='Linux/Windows dual boot' />
             </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Keyboard shortcuts')}>
-                <Kartica3 slika='./keyboard-shortcuts.jpg' imeSlike='Keyboard shortcuts' tekst='Keyboard shortcuts' />
+            <div className='cursor-pointer' onClick={() => handleKlik('Prečice na tastaturi')}>
+                <Kartica3 slika='./keyboard-shortcuts.jpg' imeSlike='Keyboard shortcuts' tekst='Prečice na tastaturi' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('Tutorijal o održavanju kompjutera')}>
                 <Kartica3 slika='./pc-maintenance-guide.jpg' imeSlike='PC Maintenance Guide' tekst='Tutorijal o održavanju' />
