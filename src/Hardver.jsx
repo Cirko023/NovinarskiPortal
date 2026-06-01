@@ -9,31 +9,17 @@ import izvuciSliku from './utils/izvuciSliku';
 function Hardver() {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('hardver');
-
-    const idPoNaslovu = (naslov) => {
-        const pronadjen = tekstovi.find(
-            t => t.naslov.toLowerCase() === naslov.toLowerCase()
-        );
-        return pronadjen ? pronadjen.id : null;
-    };
-
-    const handleKlik = (naslov) => {
-        const id = idPoNaslovu(naslov);
-        if (id) navigate(`/tekst/${id}`);
-    };
+    const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
+    const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
 
     return (
         <>
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
-            <div className='cursor-pointer' onClick={() => handleKlik('RTX 5090 Recenzija')}>
-                <Kartica3 slika='./geforce-rtx-5090.jpg' imeSlike='GeForce RTX 5090' tekst='RTX 5090 Recenzija' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Najbolja Budžet Tastatura')}>
-                <Kartica3 slika='./aula-f99.jpg' imeSlike='Aula-f99' tekst='Najbolja Budžet Tastatura' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Novi Framework Laptop')}>
-                <Kartica3 slika='./framework-laptop.jpg' imeSlike='Framework Laptop 13' tekst='Novi Framework Laptop' />
-            </div>
+            {glavneVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica3 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
@@ -41,15 +27,11 @@ function Hardver() {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Deficit silicijumskih čipova')}>
-                <Kartica2 slika='./intel-cpu.jpg' imeSlike='Intel CPU' tekst='Globalna nestašica procesora je navodno drastičnija nego nestašica RAM memorije, dok se industrija oslanja na izlazak novu Intel 18A tehnologiju.' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('PlayStation 5 Povećanje cene')}>
-                <Kartica2 slika='./sony-ps5.jpg' imeSlike='PlayStation 5' tekst='Sony povećao cenu PlayStation 5 konzola na globalnom nivou.' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('AMD Ryzen 9 9950X3D2 Dual Edition Procesor')}>
-                <Kartica2 slika='./amd-ryzen.jpg' imeSlike='AMD Ryzen 9950X3D2' tekst='AMD izbacuje Ryzen 9 9950X3D2 Dual Edition processor koji kombinuje visoke performanse "Zen 5" tehnologije jezgra sa dual 2nd Gen AMD 3D V-Cache tehnologijom kroz svih 16 jezgara' />
-            </div>
+            {najnovijeVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica2 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.sazetak || t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center border-b border-gray-400 mb-7 mt-20'>

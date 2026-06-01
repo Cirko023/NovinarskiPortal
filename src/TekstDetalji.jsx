@@ -19,6 +19,8 @@ function TekstDetalji() {
     const [noviSadrzaj, setNoviSadrzaj] = useState('');
     const quillRef = useRef(null);
     const [confirmDelete, setConfirmDelete] = useState(false);
+    const [noviSazetak, setNoviSazetak] = useState('');
+    const [editSazetak, setEditSazetak] = useState(false);
 
     useEffect(() => {
         const fetchTekst = async () => {
@@ -67,6 +69,18 @@ function TekstDetalji() {
         }
     };
 
+    const handleToggleIstaknuto = async (polje) => {
+    const novaVrednost = !tekst[polje];
+    await updateDoc(doc(db, 'tekstovi', id), { [polje]: novaVrednost });
+    setTekst(prev => ({ ...prev, [polje]: novaVrednost }));
+    };
+
+    const handleSaveSazetak = async () => {
+    await updateDoc(doc(db, 'tekstovi', id), { sazetak: noviSazetak });
+    setTekst(prev => ({ ...prev, sazetak: noviSazetak }));
+    setEditSazetak(false);
+    };
+
     const modules = {
         toolbar: {
             container: [
@@ -113,15 +127,30 @@ function TekstDetalji() {
                 <span className='bg-gray-700 text-gray-300 text-sm font-semibold px-3 py-1 rounded-full uppercase tracking-widest'>
                     {tekst.kategorija}
                 </span>
-                {/* Edit dugme — vidljivo samo ulogovanim */}
-                {user && !editMode && (
-                    <button
-                        onClick={handleEdit}
-                        className='bg-gray-700 text-white px-4 py-2 rounded-xl border border-gray-600 hover:bg-gray-600 transition-colors duration-200 text-sm font-bold'
-                    >
-                        Izmeni tekst
-                    </button>
-                )}
+                    {jeAutor && !editMode && (
+                        <div className='flex gap-3 items-center'>
+                            <button
+                                onClick={() => handleToggleIstaknuto('istaknutoGlavna')}
+                                className={`px-4 py-1 rounded-lg text-sm font-semibold border transition-colors duration-200 
+                                    ${tekst.istaknutoGlavna ? 'bg-indigo-500 text-white border-indigo-500' : 'bg-transparent text-gray-500 border-gray-400'}`}
+                            >
+                                ★ Glavna kartica
+                            </button>
+                            <button
+                                onClick={() => handleToggleIstaknuto('istaknutoNajnovijaVest')}
+                                className={`px-4 py-1 rounded-lg text-sm font-semibold border transition-colors duration-200 
+                                    ${tekst.istaknutoNajnovijaVest ? 'bg-indigo-500 text-white border-indigo-500' : 'bg-transparent text-gray-500 border-gray-400'}`}
+                            >
+                                ★ Najnovija vest
+                            </button>
+                            <button
+                                onClick={handleEdit}
+                                className='bg-gray-700 text-white px-4 py-2 rounded-xl border border-gray-600 hover:bg-gray-600 transition-colors duration-200 text-sm font-bold'
+                            >
+                                Izmeni tekst
+                            </button>
+                        </div>
+                    )}
             </div>
 
             {editMode ? (
@@ -167,34 +196,46 @@ function TekstDetalji() {
                         {tekst.vremeKreiranja && (
                             <span>📅 {tekst.vremeKreiranja.toDate().toLocaleDateString('sr-RS')}</span>
                         )}
-                        {jeAutor && (
+                        {jeAutor && !editMode && (
                             <div className='ml-auto flex items-center gap-2'>
-                                {confirmDelete ? (
+                                {editSazetak ? (
                                     <>
-                                        <span className='text-1xl text-black font-bold'>Da li ste sigurni?</span>
-                                        <button
-                                            onClick={handleDelete}
-                                            className='bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700 text-sm font-semibold'
-                                        >
-                                            Da, obriši
+                                        <textarea
+                                            value={noviSazetak}
+                                            onChange={e => setNoviSazetak(e.target.value)}
+                                            placeholder='Kratki opis vesti...'
+                                            className='p-2 bg-gray-700 text-white border border-gray-600 rounded-lg text-sm w-96'
+                                            rows={2}
+                                        />
+                                        <button onClick={handleSaveSazetak} className='bg-indigo-500 text-white px-3 py-1 rounded-lg text-sm font-semibold'>
+                                            Sačuvaj
                                         </button>
-                                        <button
-                                            onClick={() => setConfirmDelete(false)}
-                                            className='bg-gray-200 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-300 text-sm font-semibold'
-                                        >
+                                        <button onClick={() => setEditSazetak(false)} className='bg-gray-300 text-gray-700 px-3 py-1 rounded-lg text-sm font-semibold'>
                                             Otkaži
                                         </button>
-                                        </>
-                                    ) : (
-                                        <button
-                                            onClick={() => setConfirmDelete(true)}
-                                            className='ml-auto bg-red-600 text-white px-4 py-1 rounded-lg hover:bg-red-700 transition-colors duration-200 text-sm font-semibold'
-                                        >
-                                            🗑️ Obriši tekst
+                                    </>
+                                ) : (
+                                    <button onClick={() => { setNoviSazetak(tekst.sazetak || ''); setEditSazetak(true); }} className='bg-gray-700 text-white px-4 py-1 rounded-lg border border-gray-600 hover:bg-gray-600 text-sm font-semibold'>
+                                        📝 Postavi Sazetak
+                                    </button>
+                                )}
+                                {confirmDelete ? (
+                                    <>
+                                        <span className='text-black font-bold'>Da li ste sigurni?</span>
+                                        <button onClick={handleDelete} className='bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700 text-sm font-semibold'>
+                                            Da, obriši
                                         </button>
+                                        <button onClick={() => setConfirmDelete(false)} className='bg-gray-200 text-gray-700 px-3 py-1 rounded-lg hover:bg-gray-300 text-sm font-semibold'>
+                                            Otkaži
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button onClick={() => setConfirmDelete(true)} className='bg-red-600 text-white px-4 py-1 rounded-lg hover:bg-red-700 transition-colors duration-200 text-sm font-semibold'>
+                                        🗑️ Obriši tekst
+                                    </button>
                                 )}
                             </div>
-                         )}
+                        )}
                     </div>
                     <div
                         className='prose prose-lg max-w-none
