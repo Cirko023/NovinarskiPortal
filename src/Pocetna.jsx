@@ -60,7 +60,7 @@ function Pocetna() {
         </div>
 
         <div className='flex items-center border-b border-gray-400 mb-7'>
-            <p className='font-bold text-4xl mb-1 text-black'>NEWS</p>
+            <p className='font-bold text-4xl mb-1 text-black'>NAJNOVIJE VESTI</p>
         </div>
 
         <div className='flex flex-col justify-center'>
