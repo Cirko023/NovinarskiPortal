@@ -1,6 +1,6 @@
 import './index.css'
 
-function Kartica3({slika, ImeSlike, tekst}) {
+function KarticaGlavnaVest({slika, ImeSlike, tekst}) {
     return(
         <>
             <div className='rounded-xl relative w-86 overflow-hidden'>
@@ -19,5 +19,5 @@ function Kartica3({slika, ImeSlike, tekst}) {
 
 }
 
-export default Kartica3;
+export default KarticaGlavnaVest;
 

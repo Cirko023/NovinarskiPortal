@@ -1,6 +1,6 @@
 import './index.css'
 
-function Kartica2({slika, ImeSlike, tekst}) {
+function KarticaNajnovijaVest({slika, ImeSlike, tekst}) {
     return (
         <div className='flex flex-row bg-slate-950/95 mb-10 rounded-[1.75rem] border border-slate-700 shadow-xl shadow-slate-950/40 overflow-hidden transition-transform duration-300 hover:-translate-y-1'>
             <div className='w-[20rem] h-[14rem] shrink-0 flex items-center justify-center bg-slate-800/80 overflow-hidden'>
@@ -13,4 +13,4 @@ function Kartica2({slika, ImeSlike, tekst}) {
     )
 }
 
-export default Kartica2;
+export default KarticaNajnovijaVest;

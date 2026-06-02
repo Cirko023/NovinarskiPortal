@@ -1,7 +1,7 @@
 import './index.css'
 import KarticaVest from './KarticaVest.jsx';
-import Kartica2 from './Kartica2.jsx';
-import Kartica3 from './Kartica3.jsx';
+import KarticaNajnovijaVest from './KarticaNajnovijaVest.jsx';
+import KarticaGlavnaVest from './KarticaGlavnaVest.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
@@ -23,7 +23,7 @@ function Softver({ pretraga }) {
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
             {glavneVesti.map(t => (
                 <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
-                    <Kartica3 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.naslov} />
+                    <KarticaGlavnaVest slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.naslov} />
                 </div>
             ))}
         </div>
@@ -35,7 +35,7 @@ function Softver({ pretraga }) {
         <div className='flex flex-col justify-center'>
             {najnovijeVesti.map(t => (
                 <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
-                    <Kartica2 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.sazetak || t.naslov} />
+                    <KarticaNajnovijaVest slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.sazetak || t.naslov} />
                 </div>
             ))}
         </div>

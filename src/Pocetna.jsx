@@ -1,7 +1,7 @@
 import './index.css'
 import KarticaVest from './KarticaVest.jsx';
-import Kartica2 from './Kartica2.jsx';
-import Kartica3 from './Kartica3.jsx';
+import KarticaNajnovijaVest from './KarticaNajnovijaVest.jsx';
+import KarticaGlavnaVest from './KarticaGlavnaVest.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
@@ -36,13 +36,13 @@ function Pocetna({ pretraga }) {
         <>
         <div className='flex flex-row justify-center items-center bg-linear-to-r/hsl from-gray-900 to-gray-600 gap-10 mb-40 mt-40 w-full h-130'>
             <div className='cursor-pointer' onClick={() => handleKlik('Subnautica 2 Rani Pristup Recenzija')}>
-                <Kartica3 slika='./subnautica2.jpg' ImeSlike='Subnautica 2' tekst='Subnautica 2 Recenzija' />
+                <KarticaGlavnaVest slika='./subnautica2.jpg' ImeSlike='Subnautica 2' tekst='Subnautica 2 Recenzija' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck Recenzija')}>
-                <Kartica3 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck Recenzija' />
+                <KarticaGlavnaVest slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck Recenzija' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('Stvari koje smo Objavili na I/O 2026')}>
-                <Kartica3 slika='./google-io.jpg' ImeSlike='Google I/O 2026' tekst='Google I/O 2026' />
+                <KarticaGlavnaVest slika='./google-io.jpg' ImeSlike='Google I/O 2026' tekst='Google I/O 2026' />
             </div>
         </div>
 
@@ -71,11 +71,11 @@ function Pocetna({ pretraga }) {
 
         <div className='flex flex-col justify-center'>
             <div className='cursor-pointer' onClick={() => handleKlik('Nintendo Switch 2 je izašao: Sve što treba da znaš pre kupovine')}>
-                <Kartica2 slika='./nintendo-switch.jpg' ImeSlike='Nintendo Switch' tekst='Nintendo Switch je najavio novu liniju konzola sa poboljšanim performansama 
+                <KarticaNajnovijaVest slika='./nintendo-switch.jpg' ImeSlike='Nintendo Switch' tekst='Nintendo Switch je najavio novu liniju konzola sa poboljšanim performansama 
                 i većim ekranom, pružajući igračima još bolje iskustvo igranja.' />
             </div>
             <div className='cursor-pointer' onClick={() => handleKlik('Steam Deck Recenzija')}>
-                <Kartica2 slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck je nova prenosiva gaming konzola koja se takmici sa Nintendo Switch-om, 
+                <KarticaNajnovijaVest slika='./steam-deck.jpg' ImeSlike='Steam Deck' tekst='Steam Deck je nova prenosiva gaming konzola koja se takmici sa Nintendo Switch-om, 
                 nudeći igračima mogućnost da igraju svoje omiljene PC igre na putu.' />
             </div>
         </div>
