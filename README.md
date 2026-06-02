@@ -76,31 +76,6 @@ npm run dev
 
 Aplikacija se pokreće na `http://localhost:5173`
 
-## Struktura projekta
-src/
-├── hooks/
-│   └── useTekstovi.js       # Hook za dohvatanje tekstova iz Firestorea
-├── utils/
-│   └── izvuciSliku.js       # Utility za izvlačenje slike iz HTML sadržaja
-├── App.jsx                  # Glavni router i theme state
-├── Header.jsx               # Navigacija i search bar
-├── Pocetna.jsx              # Početna stranica
-├── Hardver.jsx
-├── Igrice.jsx
-├── Softver.jsx
-├── Telefoni.jsx
-├── TipsAndTricks.jsx
-├── Dogadjaji.jsx
-├── TekstDetalji.jsx         # Prikaz, izmena i brisanje teksta
-├── DodajTekst.jsx           # Forma za dodavanje teksta
-├── SearchResults.jsx        # Prikaz rezultata pretrage
-├── Login.jsx
-├── Register.jsx
-├── KarticaVest.jsx
-├── Kartica2.jsx
-├── Kartica3.jsx
-├── firebase.js
-└── index.css
 
 ## Tim
 
