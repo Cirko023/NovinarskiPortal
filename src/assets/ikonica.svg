@@ -1,0 +1,25 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="90" fill="#111827"></circle>
+
+  <!-- Newspaper body -->
+  <rect x="55" y="60" width="90" height="80" rx="6" fill="#E5E7EB"></rect>
+
+  <!-- Header line -->
+  <rect x="65" y="70" width="50" height="8" rx="2" fill="#111827"></rect>
+
+  <!-- Text lines -->
+  <rect x="65" y="85" width="70" height="6" rx="2" fill="#6B7280"></rect>
+  <rect x="65" y="98" width="70" height="6" rx="2" fill="#6B7280"></rect>
+  <rect x="65" y="111" width="55" height="6" rx="2" fill="#6B7280"></rect>
+
+  <!-- Microphone (news symbol) -->
+  <rect x="120" y="95" width="10" height="25" rx="5" fill="#111827"></rect>
+  <rect x="115" y="120" width="20" height="6" rx="3" fill="#111827"></rect>
+
+  <!-- Signal waves -->
+  <path d="M145 90 C155 100,155 120,145 130" stroke="#E5E7EB" stroke-width="3" fill="none"></path>
+  <path d="M155 80 C170 100,170 120,155 140" stroke="#E5E7EB" stroke-width="3" fill="none"></path>
+
+</svg>
