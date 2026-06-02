@@ -19,6 +19,7 @@ function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'dark';
   });
+  const [pretraga, setPretraga] = useState('');
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -32,16 +33,16 @@ function App() {
   return (
     <BrowserRouter>
       <Toaster position="top-right" />
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Header theme={theme} toggleTheme={toggleTheme} pretraga={pretraga} setPretraga={setPretraga} />
       <div className='pt-20'>
       <Routes>
-        <Route path='/' element={<Pocetna />} />
-        <Route path='/hardver' element={<Hardver />} />
-        <Route path='/igrice' element={<Igrice />}/>
-        <Route path='/tipsandtricks' element={<TipsAndTricks />}/>
-        <Route path='/telefoni' element={<Telefoni />}/>
-        <Route path='/softver' element={<Softver />} />
-        <Route path='/dogadjaji' element={<Dogadjaji />} />
+        <Route path='/' element={<Pocetna pretraga={pretraga} />} />
+        <Route path='/hardver' element={<Hardver pretraga={pretraga} />} />
+        <Route path='/igrice' element={<Igrice pretraga={pretraga} />}/>
+        <Route path='/tipsandtricks' element={<TipsAndTricks pretraga={pretraga} />}/>
+        <Route path='/telefoni' element={<Telefoni pretraga={pretraga} />}/>
+        <Route path='/softver' element={<Softver pretraga={pretraga} />} />
+        <Route path='/dogadjaji' element={<Dogadjaji pretraga={pretraga} />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/dodaj-tekst' element={<DodajTekst />} />
