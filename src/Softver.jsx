@@ -10,35 +10,22 @@ import SearchResults from './SearchResults.jsx';
 function Softver({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('softver');
+    const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
+    const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
+
     
     if (pretraga?.trim()) {
         return <SearchResults pretraga={pretraga} />;
     }
 
-    const idPoNaslovu = (naslov) => {
-        const pronadjen = tekstovi.find(
-            t => t.naslov.toLowerCase() === naslov.toLowerCase()
-        );
-        return pronadjen ? pronadjen.id : null;
-    };
-
-    const handleKlik = (naslov) => {
-        const id = idPoNaslovu(naslov);
-        if (id) navigate(`/tekst/${id}`);
-    };
-
     return (
         <>
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
-            <Link to="/tekst/yFCOYvd1TnoiUUYteSpX">
-                <Kartica3 slika='./windows12.jpg' imeSlike='Windows 12' tekst='Windows 12 Recenzija' />
-            </Link>
-            <div className='cursor-pointer' onClick={() => handleKlik('Najbolje Adobe Alternative u 2026')}>
-                <Kartica3 slika='./adobe.jpg' imeSlike='Adobe vs Free' tekst='Adobe vs Free Alternative' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Najbolji Video Editing Software za 2026')}>
-                <Kartica3 slika='./editing-software.jpg' imeSlike='Video Editing Software' tekst='Najbolji Editing Software' />
-            </div>
+            {glavneVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica3 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
@@ -46,15 +33,11 @@ function Softver({ pretraga }) {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Office 2026: Sta znamo dosad i sta ocekivati')}>
-                <Kartica2 slika='./m-office2026.jpg' imeSlike='Microsoft Office 2026' tekst='Microsoft izbacuje novi Office paket sa dubokom AI integracijom, Copilot asistentom u svakoj aplikaciji i novim real-time collaboration funkcijama' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Najbolji antivirus softver 2026')}>
-                <Kartica2 slika='./antivirus.jpg' imeSlike='Antivirus Software' tekst='Sa porastom AI-generisanih malware napada, izbor pravog antivirusa nikad nije bio važniji. Bitdefender, Kaspersky i Windows Defender predvode listu u 2026, ali koji je pravi izbor za tebe? Testirali smo performanse, uticaj na sistem i cenu kako bismo pronašli pobednika.' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('AI Alati za Pisanje Koda: Da li će zameniti programere?')}>
-                <Kartica2 slika='./ai-tools.jpg' imeSlike='AI Coding Alati' tekst='AI coding alati poput GitHub Copilot, Cursor i Claude Code drastično menjaju način na koji se piše kod — ali da li zaista ugrožavaju programere?' />
-            </div>
+            {najnovijeVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica2 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.sazetak || t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center border-b border-gray-400 mb-7 mt-20'>
