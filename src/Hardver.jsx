@@ -5,10 +5,15 @@ import Kartica3 from './Kartica3.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
+import SearchResults from './SearchResults.jsx';
 
-function Hardver() {
+function Hardver({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('hardver');
+    
+    if (pretraga?.trim()) {
+        return <SearchResults pretraga={pretraga} />;
+    }
     const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
     const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
 

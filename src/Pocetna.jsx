@@ -5,14 +5,20 @@ import Kartica3 from './Kartica3.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
+import SearchResults from './SearchResults.jsx';
 
 const KarticaLink = ({ id, children }) => {
     return id ? <Link to={`/tekst/${id}`}>{children}</Link> : <>{children}</>;
 };
 
-function Pocetna() {
+function Pocetna({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi();
+
+    // Prikaži search rezultate ako je pretraga aktivna
+    if (pretraga.trim()) {
+        return <SearchResults pretraga={pretraga} />;
+    }
 
     const idPoNaslovu = (naslov) => {
         const pronadjen = tekstovi.find(

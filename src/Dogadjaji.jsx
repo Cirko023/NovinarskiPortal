@@ -5,10 +5,15 @@ import Kartica3 from './Kartica3.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
+import SearchResults from './SearchResults.jsx';
 
-function Dogadjaji() {
+function Dogadjaji({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('dogadjaji');
+    
+    if (pretraga?.trim()) {
+        return <SearchResults pretraga={pretraga} />;
+    }
 
     const idPoNaslovu = (naslov) => {
         const pronadjen = tekstovi.find(

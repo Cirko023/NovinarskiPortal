@@ -4,7 +4,7 @@ import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase.js';
 import { useState, useEffect } from 'react';
 
-function Header() {
+function Header({ pretraga, setPretraga }) {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -60,6 +60,15 @@ function Header() {
                     <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/softver'>Softver</NavLink>
                     <NavLink className='rounded-full bg-slate-800/90 px-5 py-3 transition hover:bg-slate-700' to='/dogadjaji'>Događaji</NavLink>
                 </nav>
+
+                {/* SEARCH BAR */}
+                <input
+                    type='text'
+                    placeholder='Pretraži tekstove...'
+                    value={pretraga}
+                    onChange={(e) => setPretraga(e.target.value)}
+                    className='w-full p-3 rounded-xl border border-slate-700 bg-slate-800/80 text-white placeholder-slate-400 focus:outline-none focus:border-slate-500'
+                />
             </div>
         </header>
     )
