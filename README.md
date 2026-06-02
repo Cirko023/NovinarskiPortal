@@ -1,16 +1,79 @@
-# React + Vite
+# Novinarski Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Novinarski web portal za objavljivanje i čitanje tehnoloških vesti, razvijen kao seminarski rad na Tehničkom fakultetu "Mihajlo Pupin" u Zrenjaninu.
 
-Currently, two official plugins are available:
+## O projektu
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Portal omogućava čitanje tekstova iz oblasti hardvera, softvera, video igara, mobilnih uređaja, tehničkih saveta i tehnoloških događaja. Registrovani korisnici mogu pisati, uređivati i brisati sopstvene tekstove kroz bogati text editor.
 
-## React Compiler
+## Tehnologije
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** – frontend biblioteka
+- **React Router v6** – klijentski routing
+- **Tailwind CSS v4** – stilizovanje
+- **Firebase Firestore** – baza podataka u realnom vremenu
+- **Firebase Authentication** – autentifikacija korisnika
+- **Firebase Storage** – čuvanje slika
+- **ReactQuill** – rich text editor
+- **DOMPurify** – sanitizacija HTML sadržaja
+- **Vite** – build alat
 
-## Expanding the ESLint configuration
+## Funkcionalnosti
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Pregled tekstova po kategorijama: Hardver, Video Igre, Tips & Tricks, Softver, Mobilni Uređaji, Događaji
+- Pretraga tekstova po naslovu u realnom vremenu
+- Registracija i prijava korisnika
+- Dodavanje tekstova sa slikama i formatiranjem
+- Izmena i brisanje sopstvenih tekstova
+- Prikaz detalja svakog teksta na posebnoj stranici
+
+## Pokretanje projekta
+
+### Preduslovi
+
+- Node.js 20+
+- npm 10+
+- Firebase projekat sa aktiviranim Firestore, Authentication i Storage servisima
+
+### Instalacija
+
+```bash
+git clone https://github.com/Cirko023/NovinarskiPortal.git
+cd NovinarskiPortal
+npm install
+```
+
+### Firebase konfiguracija
+
+Kreiraj fajl `src/firebase.js` sa podacima svog Firebase projekta:
+
+```javascript
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
+
+const firebaseConfig = {
+    apiKey: "...",
+    authDomain: "...",
+    projectId: "...",
+    storageBucket: "...",
+    messagingSenderId: "...",
+    appId: "..."
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const storage = getStorage(app);
+```
+
+### Pokretanje
+
+```bash
+npm run dev
+```
+
+Aplikacija se pokreće na `http://localhost:5173`
+
+## Struktura projekta
