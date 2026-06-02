@@ -10,35 +10,22 @@ import SearchResults from './SearchResults.jsx';
 function Dogadjaji({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('dogadjaji');
+    const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
+    const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
+
     
     if (pretraga?.trim()) {
         return <SearchResults pretraga={pretraga} />;
     }
 
-    const idPoNaslovu = (naslov) => {
-        const pronadjen = tekstovi.find(
-            t => t.naslov.toLowerCase() === naslov.toLowerCase()
-        );
-        return pronadjen ? pronadjen.id : null;
-    };
-
-    const handleKlik = (naslov) => {
-        const id = idPoNaslovu(naslov);
-        if (id) navigate(`/tekst/${id}`);
-    };
-
     return (
         <>
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Computex 2026')}>
-                <Kartica3 slika='./computex.jpg' imeSlike='Computex 2026' tekst='Computex 2026' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('The Game Awards 2026')}>
-                <Kartica3 slika='./game-awards.jpg' imeSlike='The Game Awards 2026' tekst='The Game Awards 2026' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Gamescom 2026')}>
-                <Kartica3 slika='./gamescom.jpg' imeSlike='Gamescom 2026' tekst='Gamescom 2026' />
-            </div>
+            {glavneVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica3 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
@@ -46,15 +33,11 @@ function Dogadjaji({ pretraga }) {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('CES 2026')}>
-                <Kartica2 slika='./ces-2026.jpg' imeSlike='CES 2026' tekst='Na ovogodišnjem CES sajmu u Las Vegasu predstavljeni su najnoviji AI uređaji, foldable laptopovi i robotski asistenti koji obećavaju da će promeniti svakodnevni život' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Stvari koje smo Objavili na I/O 2026')}>
-                <Kartica2 slika='./google-io.jpg' imeSlike='Google I/O 2026' tekst='Google je na svojoj godišnjoj konferenciji predstavio Android 16, nove Gemini AI modele i revolucionarni Project Astra koji integriše AI u sve Google proizvode.' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Microsoft Build 2026')}>
-                <Kartica2 slika='./microsoft.jpg' imeSlike='Microsoft Build 2026' tekst=' Microsoft Build 2026 se održava 2. i 3. juna u San Franciscu — ove godine fokus je na AI alatima za developere, GitHub Copilot unapređenjima i Azure AI platformi. Konferencija će biti dostupna i online besplatno za sve zainteresovane.' />
-            </div>
+            {najnovijeVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica2 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.sazetak || t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center border-b border-gray-400 mb-7 mt-20'>

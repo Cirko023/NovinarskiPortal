@@ -10,12 +10,12 @@ import SearchResults from './SearchResults.jsx';
 function Hardver({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('hardver');
-    
+    const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
+    const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
+
     if (pretraga?.trim()) {
         return <SearchResults pretraga={pretraga} />;
     }
-    const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
-    const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
 
     return (
         <>

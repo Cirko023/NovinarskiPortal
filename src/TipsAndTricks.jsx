@@ -5,40 +5,25 @@ import Kartica3 from './Kartica3.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import useTekstovi from './hooks/useTekstovi';
 import izvuciSliku from './utils/izvuciSliku';
-import SearchResults from './SearchResults.jsx';
 
 function TipsAndTricks({ pretraga }) {
     const navigate = useNavigate();
     const tekstovi = useTekstovi('tipsandtricks');
-    
-    if (pretraga?.trim()) {
+    const glavneVesti = tekstovi.filter(t => t.istaknutoGlavna).slice(0, 3);
+    const najnovijeVesti = tekstovi.filter(t => t.istaknutoNajnovijaVest).slice(0, 3);
+
+            if (pretraga?.trim()) {
         return <SearchResults pretraga={pretraga} />;
     }
-
-    const idPoNaslovu = (naslov) => {
-        const pronadjen = tekstovi.find(
-            t => t.naslov.toLowerCase() === naslov.toLowerCase()
-        );
-        return pronadjen ? pronadjen.id : null;
-    };
-
-    const handleKlik = (naslov) => {
-        const id = idPoNaslovu(naslov);
-        if (id) navigate(`/tekst/${id}`);
-    };
 
     return (
         <>
         <div className='flex flex-row justify-center items-center gap-10 mb-40 mt-40 bg-linear-to-r/hsl from-gray-900 to-gray-600 w-full h-130'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Linux/Windows dual boot')}>
-                <Kartica3 slika='./linux-windows.jpg' imeSlike='Linux i Windows' tekst='Linux/Windows dual boot' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Prečice na tastaturi')}>
-                <Kartica3 slika='./keyboard-shortcuts.jpg' imeSlike='Keyboard shortcuts' tekst='Prečice na tastaturi' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Tutorijal o održavanju kompjutera')}>
-                <Kartica3 slika='./pc-maintenance-guide.jpg' imeSlike='PC Maintenance Guide' tekst='Tutorijal o održavanju' />
-            </div>
+            {glavneVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica3 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center mt-40 border-b border-gray-400 mb-7'>
@@ -46,15 +31,11 @@ function TipsAndTricks({ pretraga }) {
         </div>
 
         <div className='flex flex-col justify-center'>
-            <div className='cursor-pointer' onClick={() => handleKlik('Kako ubrzati Windows 11')}>
-                <Kartica2 slika='./windows11.jpg' imeSlike='Windows 11' tekst='Stvari koje morate znati za ubrzavanje Windows 11 sistema kao isključivanje startup programa, čišćenje temp fajlova...' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('5 VS Code ekstenzija koje morate imati')}>
-                <Kartica2 slika='./vs-code.jpg' imeSlike='VS Code' tekst='5 VS Code ekstenzija koje morate imati za bolji developmenat, Prettier, GitLens...' />
-            </div>
-            <div className='cursor-pointer' onClick={() => handleKlik('Kako podesiti dual monitor setup')}>
-                <Kartica2 slika='./dual-monitor-setup.jpg' imeSlike='Dual Monitor Setup' tekst='Kako podesiti dual monitor setup za optimalno iskustvo rada i zabave.' />
-            </div>
+            {najnovijeVesti.map(t => (
+                <div key={t.id} className='cursor-pointer' onClick={() => navigate(`/tekst/${t.id}`)}>
+                    <Kartica2 slika={izvuciSliku(t.sadrzaj) || ''} imeSlike={t.naslov} tekst={t.sazetak || t.naslov} />
+                </div>
+            ))}
         </div>
 
         <div className='flex items-center border-b border-gray-400 mb-7 mt-20'>
